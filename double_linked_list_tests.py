@@ -28,7 +28,7 @@ print("print(l):",l)
 l.insert_before(2.5,3)
 print("l.insert_before(2.5,3):",l)
 l.insert_before(0.5,1)
-"""
+
 print("l.insert_before(0.5,1):",l)
 l.insert_after(3.5,3)
 print("l.insert_after(3.5,3):",l)
@@ -36,7 +36,7 @@ l.insert_after(6.5,6)
 print("l.insert_after(6.5,6):",l)
 l.insert_at(1.5,1)
 print("l.insert_at(1.5,1):",l)
-"""
+
 
 
 #%% Test des fonctions get_first, get_last, get_at

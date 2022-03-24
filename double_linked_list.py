@@ -116,6 +116,8 @@ class DoubleLinkedList:
         for i in range(self.size):
             if self.get_value(i)==p:
                 self.insert_at(v,i-1)
+                return self
+        return self
         
 
     def insert_after(self, v, p):
@@ -129,6 +131,8 @@ class DoubleLinkedList:
         for i in range(self.size):
             if self.get_value(i)==p:
                 self.insert_at(v,i)
+                return self
+        return self
         
     def insert_at(self,v,i):
         """ Returns the list in which the element of value v has been inserted at index i
@@ -139,10 +143,13 @@ class DoubleLinkedList:
         output  -- self in which the element of value v has been inserted at index i of the list
                     the size of the list is updated
         """
-        if i==0:
+        if i==-1:
             self.insert_first(v)
-        if i==self.size:
+            return self
+        if i==self.size-1:
             self.insert_last(v)
+            return self
+
         cToInsert=Cell()
         cToInsert.value=v
         c1=self.get_at(i)
@@ -157,7 +164,7 @@ class DoubleLinkedList:
         cToInsert.next=c2
 
         self.size+=1
-    
+        return self
         
     def get_first(self):
         """ Returns the first element of the list (of type Cell)
