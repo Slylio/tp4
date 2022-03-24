@@ -113,7 +113,10 @@ class DoubleLinkedList:
                 -- p : value of the cell before which the value should be inserted
         output  -- self in which the element of value v has been inserted before the first cell of value p
         """
-        #TODO
+        for i in range(self.size):
+            if self.get_value(i)==p:
+                self.insert_at(v,i-1)
+        
 
     def insert_after(self, v, p):
         """ Returns the list in which the element of value v has been inserted after the first cell of value p
@@ -122,7 +125,10 @@ class DoubleLinkedList:
                 -- p : value of the cell after which the value should be inserted
         output  -- self in which the element of value v has been inserted after the first cell of value p
         """
-        #TODO
+
+        for i in range(self.size):
+            if self.get_value(i)==p:
+                self.insert_at(v,i)
         
     def insert_at(self,v,i):
         """ Returns the list in which the element of value v has been inserted at index i
@@ -133,7 +139,25 @@ class DoubleLinkedList:
         output  -- self in which the element of value v has been inserted at index i of the list
                     the size of the list is updated
         """
-        #TODO
+        if i==0:
+            self.insert_first(v)
+        if i==self.size:
+            self.insert_last(v)
+        cToInsert=Cell()
+        cToInsert.value=v
+        c1=self.get_at(i)
+        c2=c1.next
+
+        #on lie la cellule d'avant et celle qu'on veut insérer
+        c1.next=cToInsert
+        cToInsert.prev=c1
+
+        #on lie la cellule cToInsert et c2
+        c2.prev=cToInsert
+        cToInsert.next=c2
+
+        self.size+=1
+    
         
     def get_first(self):
         """ Returns the first element of the list (of type Cell)
@@ -163,7 +187,8 @@ class DoubleLinkedList:
                 pre-cond: self is not empty
         output  -- p : element of type Cell
         """
-        #TODO
+        return self.get_at(self.size-1)
+        
         
     def delete_at(self,i):
         """ Returns the list in which the element at index i has been deleted
@@ -172,7 +197,28 @@ class DoubleLinkedList:
         output  -- self in which the element at index i has been deleted
                     the size of the list is updated 
         """
-        #TODO
+        cToDelete= self.get_at(i)
+        c1=cToDelete.prev
+        c2=cToDelete.next
+        c1.next=c2
+        c2.prev=c1
+        self.size-=1
+        
+
+    
+    def get_value(self,v):
+        """ Returns the value of the element of the liste at index i
+        input   -- self
+                -- v : int (index of the searched element) 
+        output  -- obj : object 
+        """
+        c=self.mfirst
+        n=self.size
+        i=0
+        while i<n and i<v and c.next!=None:
+            c=c.next
+            i+=1
+        return c.value
     
 if __name__ == '__main__':
     print('Hello DoubleLinkedList !')
